@@ -62,8 +62,11 @@
   /* Phase stepper (home) */
   $$(".phase").forEach(function (ph) {
     ph.addEventListener("click", function () {
-      $$(".phase").forEach(function (o) { if (o !== ph) o.classList.remove("open"); });
-      ph.classList.toggle("open");
+      $$(".phase").forEach(function (o) {
+        if (o !== ph) { o.classList.remove("open"); var t = $(".tap", o); if (t) t.textContent = "Tap to expand"; }
+      });
+      var nowOpen = ph.classList.toggle("open");
+      var tap = $(".tap", ph); if (tap) tap.textContent = nowOpen ? "Tap to collapse" : "Tap to expand";
     });
   });
 
@@ -103,11 +106,11 @@
   if (quiz) {
     var steps = $$(".qstep", quiz), bar = $("#qbar"), cur = 0;
     var total = steps.length;
-    function show(i) {
+    function show(i, scroll) {
       steps.forEach(function (s, k) { s.classList.toggle("on", k === i); });
       cur = i;
       if (bar) bar.style.width = Math.round(((i) / total) * 100) + "%";
-      window.scrollTo({ top: quiz.offsetTop - 90, behavior: "smooth" });
+      if (scroll !== false) window.scrollTo({ top: quiz.offsetTop - 90, behavior: "smooth" });
     }
     $$("[data-next]", quiz).forEach(function (b) {
       b.addEventListener("click", function () {
@@ -119,7 +122,8 @@
           else { f.style.borderColor = ""; }
         });
         if (!ok) return;
-        if (cur < total - 1) show(cur + 1); else finish();
+        if (cur === total - 2) finish();
+        else if (cur < total - 1) show(cur + 1);
       });
     });
     $$("[data-back]", quiz).forEach(function (b) {
@@ -157,7 +161,7 @@
       });
       window.scrollTo({ top: out.offsetTop - 90, behavior: "smooth" });
     }
-    show(0);
+    show(0, false);
   }
 
   /* Conversion estimator */
