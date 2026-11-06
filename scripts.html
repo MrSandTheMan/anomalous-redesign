@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get 5 Scripts, ANOMALOUS</title>
+<meta name="description" content="Answer six questions and get five scripts for your next social media posts, built around your dream client, your vibe, and your proudest win.">
+<meta name="theme-color" content="#0c0c0c">
+<link rel="icon" href="https://images.squarespace-cdn.com/content/v1/5fe3904804e8564c7d72245d/fa9d185d-3a30-4af8-afb0-0909c0a40d38/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="index.html" aria-label="Anomalous home"><img src="https://images.squarespace-cdn.com/content/v1/5fe3904804e8564c7d72245d/867c1caf-8105-4897-837f-d7fde5fe9fe9/Logo+WHITE.png?format=500w" alt="ANOMALOUS"></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+    <nav class="nav" id="nav">
+      <a href="index.html">Home</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="scripts.html" class="active">Get 5 Scripts</a>
+      <a href="conversion.html">Conversion Map</a>
+    </nav>
+    <a class="btn small" href="https://www.goanomalous.com/getstarted" target="_blank" rel="noopener">Book a diagnosis call</a>
+  </div>
+</header>
+
+<div class="wrap hero">
+  <div class="reveal">
+    <p class="eyebrow">Social Scripts, free</p>
+    <h1>Get 5 scripts for<br>your next <em>posts.</em></h1>
+    <p class="lede">Six questions. Five scripts, built around your dream client, your vibe, and your proudest win. Made to film on your own, in your own voice.</p>
+  </div>
+</div>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="panel reveal" id="quiz">
+      <p class="eyebrow">Your 5 scripts</p>
+      <div class="progress"><i id="qbar"></i></div>
+
+      <div class="qstep on" data-step="1">
+        <h3>1. Who is your absolute dream client?</h3>
+        <p class="hint">Be specific. First-time buyers in Queens, builders in Sullivan County, whoever you actually want.</p>
+        <div class="field"><textarea id="q1" required placeholder="Example: first-time buyers looking in Astoria who are scared of overpaying"></textarea></div>
+        <div class="stepnav"><button class="btn" data-next>Next &rarr;</button></div>
+      </div>
+
+      <div class="qstep" data-step="2">
+        <h3>2. What is the #1 action you want those clients to take after watching your videos?</h3>
+        <p class="hint">One action only. The whole script points at it.</p>
+        <div class="field"><textarea id="q2" required placeholder="Example: book a 15-minute call with me"></textarea></div>
+        <div class="stepnav"><button class="btn ghost" data-back>&larr; Back</button><button class="btn" data-next>Next &rarr;</button></div>
+      </div>
+
+      <div class="qstep" data-step="3">
+        <h3>3. If your brand was a person, how would you describe their vibe?</h3>
+        <p class="hint">Three words is plenty. Warm and patient, sharp and direct, funny and honest.</p>
+        <div class="field"><textarea id="q3" required placeholder="Example: warm, patient, straight-talking"></textarea></div>
+        <div class="stepnav"><button class="btn ghost" data-back>&larr; Back</button><button class="btn" data-next>Next &rarr;</button></div>
+      </div>
+
+      <div class="qstep" data-step="4">
+        <h3>4. What is your biggest flex or proudest win in your business?</h3>
+        <p class="hint">The result you are most proud of. A deal, a client story, a number.</p>
+        <div class="field"><textarea id="q4" required placeholder="Example: helped a first-time buyer win a bidding war $40K under ask"></textarea></div>
+        <div class="stepnav"><button class="btn ghost" data-back>&larr; Back</button><button class="btn" data-next>Next &rarr;</button></div>
+      </div>
+
+      <div class="qstep" data-step="5">
+        <h3>5. When it's time to film, what does your current setup look like?</h3>
+        <p class="hint">Phone and a window, a full rig, a crew, whatever is real. The scripts fit the setup, not the other way around.</p>
+        <div class="field"><textarea id="q5" required placeholder="Example: iPhone on a tripod by the window, no mic yet"></textarea></div>
+        <div class="stepnav"><button class="btn ghost" data-back>&larr; Back</button><button class="btn" data-next>Next &rarr;</button></div>
+      </div>
+
+      <div class="qstep" data-step="6">
+        <h3>6. When would you like to start posting these ideas?</h3>
+        <p class="hint">A date keeps it real. This week, next Monday, the first of the month.</p>
+        <div class="field"><input type="text" id="q6" required placeholder="Example: this Friday"></div>
+        <div class="stepnav"><button class="btn ghost" data-back>&larr; Back</button><button class="btn" data-next>Next &rarr;</button></div>
+      </div>
+
+      <div class="qstep" data-step="7">
+        <h3>Where do your scripts go?</h3>
+        <p class="hint">Your five outlines appear right here, and the full word-for-word scripts go to your email.</p>
+        <div class="field"><label for="qName">Name</label><input type="text" id="qName" required placeholder="Your name"></div>
+        <div class="field"><label for="qEmail">Email</label><input type="email" id="qEmail" required placeholder="you@example.com"></div>
+        <div class="field"><label for="qPhone">Phone</label><input type="tel" id="qPhone" placeholder="Optional, for a text when your scripts are ready"></div>
+        <div class="stepnav"><button class="btn ghost" data-back>&larr; Back</button><button class="btn" data-next>Get my 5 scripts &rarr;</button></div>
+      </div>
+
+      <div class="qstep" id="qDone">
+        <h3>Your five scripts.</h3>
+        <p class="hint">Built from your answers. Film them in order, one a day, starting <span id="qStart"></span>.</p>
+        <div id="scriptResults"></div>
+        <div class="stepnav">
+          <a class="btn" href="https://www.goanomalous.com/getstarted" target="_blank" rel="noopener">Want the full system? Book a call</a>
+          <button class="btn ghost" onclick="location.reload()">Start over</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="tint">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">How it works</p>
+      <h2>Not a template. Yours.</h2>
+    </div>
+    <div class="grid3">
+      <article class="card reveal"><div class="body"><span class="chip">01</span><h3>Answer honestly</h3><p>Six questions about your dream client, your vibe, and your wins. The more specific you are, the better the scripts.</p></div></article>
+      <article class="card reveal"><div class="body"><span class="chip">02</span><h3>Get five outlines</h3><p>Five script concepts, each with a hook and a shape, built from your own words. Film them on your own setup.</p></div></article>
+      <article class="card reveal"><div class="body"><span class="chip">03</span><h3>Full scripts by email</h3><p>The complete word-for-word versions land in your inbox, written to sound like you, not like a template.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>Anomalous, LLC</h4>
+        <p style="color:var(--muted);font-size:14px;max-width:40ch">Marketing for real estate businesses. New York City, Upstate New York, New Jersey. Founded January 2021.</p>
+      </div>
+      <div>
+        <h4>Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="scripts.html">Get 5 Scripts</a>
+        <a href="conversion.html">Conversion Map</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="https://www.goanomalous.com/getstarted" target="_blank" rel="noopener">Book a diagnosis call</a>
+        <a href="mailto:team@goanomalous.com">team@goanomalous.com</a>
+        <a href="https://www.goanomalous.com/portfolio" target="_blank" rel="noopener">Live site, goanomalous.com</a>
+      </div>
+    </div>
+    <p class="foot-fine">Redesign preview, built on GitHub. Live site remains goanomalous.com until this version is approved. &copy; 2026 Anomalous, LLC.</p>
+  </div>
+</footer>
+<script src="assets/app.js"></script>
+<script>
+document.getElementById("q6").addEventListener("change", function () {
+  document.getElementById("qStart").textContent = this.value.trim() || "this week";
+});
+</script>
+</body>
+</html>
