@@ -93,6 +93,7 @@ section.tint{background:var(--bg2);border-top:1px solid var(--line);border-botto
 .phase .more{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:14px;color:#d8d2d2}
 /* lightbox */
 .lightbox{position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;padding:24px}
+[hidden]{display:none!important}
 .lightbox[hidden]{display:none}
 .lightbox img{max-width:min(920px,94vw);max-height:88vh;width:auto;height:auto;border-radius:12px}
 .lb-close{position:absolute;top:18px;right:18px;background:none;border:1px solid var(--line);color:#fff;border-radius:999px;width:44px;height:44px;cursor:pointer;font-size:22px}
