@@ -14,8 +14,8 @@ a{color:inherit}
 h1,h2,h3,.serif{font-family:var(--serif);font-weight:600;line-height:1.06;letter-spacing:-.01em}
 /* Text balance (Socrates lesson, standing rule): no heading breaks into
    five words on one line and a single orphan word on the next. */
-h1,h2,h3,.lede{text-wrap:balance}
-p{text-wrap:pretty}
+h1,h2,h3,.card-title,.lede{text-wrap:balance}
+p,figcaption{text-wrap:pretty}
 h1{font-size:clamp(44px,7vw,84px)}
 h2{font-size:clamp(32px,4.6vw,54px);margin:14px 0 14px}
 .lede{font-size:clamp(16px,2.2vw,19px);color:var(--muted);max-width:58ch}
