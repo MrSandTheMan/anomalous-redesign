@@ -153,14 +153,14 @@
     function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ""; }
     function finish() {
       if (bar) bar.style.width = "100%";
-      var dream = val("q1") || "your dream client";
+      var dream = val("q1") || "your dream customer";
       var action = val("q2") || "reach out";
       var vibe = val("q3") || "real and direct";
       var flex = val("q4") || "your proudest win";
       var setup = val("q5") || "your current setup";
       var name = val("qName") || "you";
       var scripts = [
-        { t: "1. The dream client call-out", h: "Talk straight to " + dream + ".", b: "Open on their exact problem, in their words. Name the result they want, then show you have done it before. End by asking them to " + action + "." },
+        { t: "1. The dream customer call-out", h: "Talk straight to " + dream + ".", b: "Open on their exact problem, in their words. Name the result they want, then show you have done it before. End by asking them to " + action + "." },
         { t: "2. The flex story", h: "Tell the story of " + flex + ".", b: "Start at the hard part, not the win. Walk through what you did differently, then land the result. Proof beats promises, and this one is yours." },
         { t: "3. The vibe check", h: "Show the world the " + vibe + " version of your brand.", b: "Film the way you actually work, not the way you think a brand should look. One honest moment of your process, in your own voice, does more than a polished ad." },
         { t: "4. The setup tour", h: "Your setup is the content: " + setup + ".", b: "Show people where the work happens. A quick tour of " + setup + " makes filming feel doable for you and real for them. Keep it under 30 seconds." },
