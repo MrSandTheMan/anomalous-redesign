@@ -75,17 +75,15 @@ section.tint{background:var(--bg2);border-top:1px solid var(--line);border-botto
 .team-card figcaption{padding:14px 16px;font-size:14px;font-weight:600}
 /* phase stepper */
 .phases{display:grid;gap:24px}
-.phase{display:grid;grid-template-columns:minmax(0,460px) 1fr;gap:40px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:32px;cursor:pointer;transition:border-color .2s ease}
-.phase:hover,.phase.open{border-color:var(--red)}
+.phase{display:grid;grid-template-columns:minmax(0,460px) 1fr;gap:40px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:32px;transition:border-color .2s ease}
+.phase:hover{border-color:var(--red)}
 .phase:nth-child(even) .phase-visual{order:2}
 .phase-visual{border-radius:16px;overflow:hidden;border:1px solid var(--line);cursor:zoom-in;margin:0}
 .phase-visual img{width:100%;height:auto}
 .phase .num{font-family:var(--serif);font-size:15px;color:var(--red);font-weight:700}
 .phase h3{font-size:26px;margin:6px 0 8px}
 .phase p{font-size:14px;color:var(--muted)}
-.phase .more{display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:14px;color:#d8d2d2}
-.phase.open .more{display:block}
-.phase .tap{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:16px}
+.phase .more{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:14px;color:#d8d2d2}
 /* lightbox */
 .lightbox{position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;padding:24px}
 .lightbox[hidden]{display:none}
