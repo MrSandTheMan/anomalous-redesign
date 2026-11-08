@@ -12,6 +12,10 @@ a{color:inherit}
 .wrap{max-width:1200px;margin:0 auto;padding:0 24px}
 .eyebrow{font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--red)}
 h1,h2,h3,.serif{font-family:var(--serif);font-weight:600;line-height:1.06;letter-spacing:-.01em}
+/* Text balance (Socrates lesson, standing rule): no heading breaks into
+   five words on one line and a single orphan word on the next. */
+h1,h2,h3,.lede{text-wrap:balance}
+p{text-wrap:pretty}
 h1{font-size:clamp(44px,7vw,84px)}
 h2{font-size:clamp(32px,4.6vw,54px);margin:14px 0 14px}
 .lede{font-size:clamp(16px,2.2vw,19px);color:var(--muted);max-width:58ch}
@@ -56,18 +60,37 @@ section.tint{background:var(--bg2);border-top:1px solid var(--line);border-botto
 .card p{font-size:14px;color:var(--muted)}
 .chip{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,0,4,.14);color:var(--red-soft);padding:4px 10px;border-radius:999px}
 .chip.dim{background:#262524;color:#cfc9c9}
+/* authority (GaryVee) + brands */
+.authority-grid{display:grid;grid-template-columns:minmax(0,460px) 1fr;gap:48px;align-items:center}
+.authority-photo{border-radius:20px;overflow:hidden;border:1px solid var(--line);cursor:zoom-in;margin:0}
+.authority-photo img{width:100%;height:100%;object-fit:cover}
+#authority h2{margin:14px 0 18px}
+#authority p{color:var(--muted);font-size:16px;margin-bottom:14px}
+.brands{width:100%;border-radius:16px;border:1px solid var(--line);margin-top:48px}
+/* team */
+.team-collage{border-radius:20px;overflow:hidden;border:1px solid var(--line);margin-bottom:20px;cursor:zoom-in}
+.team-collage img{width:100%}
+.team-card{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--card);cursor:zoom-in;margin:0}
+.team-card img{width:100%}
+.team-card figcaption{padding:14px 16px;font-size:14px;font-weight:600}
 /* phase stepper */
-.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.phase{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:28px;cursor:pointer;transition:border-color .2s ease}
+.phases{display:grid;gap:24px}
+.phase{display:grid;grid-template-columns:minmax(0,460px) 1fr;gap:40px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:32px;cursor:pointer;transition:border-color .2s ease}
 .phase:hover,.phase.open{border-color:var(--red)}
-.phase .pin{width:72px;height:72px;border-radius:16px;overflow:hidden;margin-bottom:18px;border:2px solid var(--line);background:#0c0c0c}
-.phase .pin img{width:100%;height:100%;object-fit:contain}
+.phase:nth-child(even) .phase-visual{order:2}
+.phase-visual{border-radius:16px;overflow:hidden;border:1px solid var(--line);cursor:zoom-in;margin:0}
+.phase-visual img{width:100%;height:auto}
 .phase .num{font-family:var(--serif);font-size:15px;color:var(--red);font-weight:700}
 .phase h3{font-size:26px;margin:6px 0 8px}
 .phase p{font-size:14px;color:var(--muted)}
 .phase .more{display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:14px;color:#d8d2d2}
 .phase.open .more{display:block}
 .phase .tap{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:16px}
+/* lightbox */
+.lightbox{position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;padding:24px}
+.lightbox[hidden]{display:none}
+.lightbox img{max-width:min(920px,94vw);max-height:88vh;width:auto;height:auto;border-radius:12px}
+.lb-close{position:absolute;top:18px;right:18px;background:none;border:1px solid var(--line);color:#fff;border-radius:999px;width:44px;height:44px;cursor:pointer;font-size:22px}
 /* portfolio */
 .filters{display:flex;gap:10px;flex-wrap:wrap;margin:28px 0}
 .filters button{background:transparent;border:1px solid var(--line);color:#fff;font:600 13px var(--sans);padding:9px 16px;border-radius:999px;cursor:pointer}
@@ -116,12 +139,13 @@ section.tint{background:var(--bg2);border-top:1px solid var(--line);border-botto
 .script-card p{font-size:14px;color:#d8d2d2}
 .script-card .hook{color:var(--red-soft);font-weight:600}
 /* modal */
-.modal{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:24px}
-.modal[hidden]{display:none}
+.modal{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:24px}.modal[hidden]{display:none}
 .modal .box{background:var(--card);border:1px solid var(--line);border-radius:20px;max-width:560px;width:100%;padding:32px;max-height:88vh;overflow:auto}
 .modal .box h3{font-size:28px;margin:8px 0 10px}
 .modal .box p{color:var(--muted);font-size:15px}
 .modal .close{float:right;background:none;border:1px solid var(--line);color:#fff;border-radius:999px;width:36px;height:36px;cursor:pointer;font-size:16px}
+/* in-page reel (9:16 vertical, height-capped so it fits the viewport) */
+.modal .reel{width:auto;max-width:100%;height:min(64vh,640px);margin:18px auto 0;display:block;background:#000;border-radius:12px}
 /* footer */
 footer{border-top:1px solid var(--line);padding:56px 0 36px;background:#0a0a0a}
 footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
@@ -130,8 +154,11 @@ footer a{display:block;text-decoration:none;color:#d8d2d2;font-size:14px;margin-
 footer a:hover{color:var(--red-soft)}
 .foot-fine{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
 @media (max-width:900px){
-  .grid3,.phases{grid-template-columns:1fr 1fr}
+  .grid3{grid-template-columns:1fr 1fr}
   .grid4{grid-template-columns:1fr 1fr}
+  .authority-grid{grid-template-columns:1fr;gap:28px}
+  .phase{grid-template-columns:1fr;gap:24px;padding:24px}
+  .phase:nth-child(even) .phase-visual{order:0}
   .stats{grid-template-columns:1fr 1fr;gap:24px 16px}
   footer .cols{grid-template-columns:1fr 1fr}
 }
@@ -142,7 +169,7 @@ footer a:hover{color:var(--red-soft)}
   .nav a{padding:12px 0;border-bottom:1px solid var(--line);font-size:16px}
   .top .btn{display:none}
   .hero{padding:52px 0 44px}
-  .grid3,.grid4,.phases{grid-template-columns:1fr}
+  .grid3,.grid4{grid-template-columns:1fr}
   .panel{padding:24px}
   section{padding:54px 0}
   footer .cols{grid-template-columns:1fr}
