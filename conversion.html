@@ -172,21 +172,5 @@
   </div>
 </footer>
 <script src="assets/app.js"></script>
-<script>
-document.getElementById("sendEstimates").addEventListener("click", function () {
-  document.getElementById("sendNote").hidden = false;
-});
-/* mirror the views value into the funnel's first row */
-var v = document.getElementById("eViews");
-function syncViews() {
-  document.getElementById("oViews2").textContent = Number(v.value).toLocaleString("en-US");
-  document.getElementById("rMoney2").textContent = document.getElementById("rMoney").textContent;
-}
-v.addEventListener("input", syncViews);
-["eCtr","eLcv","eQual","eClose","eRev"].forEach(function (id) {
-  document.getElementById(id).addEventListener("input", syncViews);
-});
-syncViews();
-</script>
 </body>
 </html>
