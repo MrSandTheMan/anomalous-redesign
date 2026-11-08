@@ -82,23 +82,55 @@
     });
   });
 
-  /* Portfolio modal */
+  /* Portfolio modal (reels play in-page, HLS via hls.js when needed) */
   var modal = $("#clientModal");
   if (modal) {
-    var mName = $("#mName"), mBroker = $("#mBroker"), mNote = $("#mNote");
+    var mName = $("#mName"), mBroker = $("#mBroker"), mVideo = $("#mVideo");
+    var hls = null;
+    function stopReel() {
+      if (mVideo) { mVideo.pause(); mVideo.removeAttribute("src"); mVideo.load(); }
+      if (hls) { hls.destroy(); hls = null; }
+    }
+    function closeModal() {
+      stopReel();
+      modal.hidden = true; document.body.style.overflow = "";
+    }
+    function playReel(src) {
+      if (!mVideo || !src) return;
+      if (window.Hls && Hls.isSupported()) {
+        hls = new Hls();
+        hls.loadSource(src);
+        hls.attachMedia(mVideo);
+      } else {
+        /* Safari plays HLS natively; anything else gets the same URL. */
+        mVideo.src = src;
+      }
+    }
     $$(".pcard").forEach(function (card) {
       card.addEventListener("click", function () {
         mName.textContent = card.getAttribute("data-name");
         mBroker.textContent = card.getAttribute("data-brokerage-label");
-        mNote.textContent = "Their reel plays on the live portfolio page. This redesign keeps every video where it already lives, so nothing breaks in the move.";
         modal.hidden = false; document.body.style.overflow = "hidden";
+        playReel(card.getAttribute("data-video"));
       });
     });
     $$("[data-close-modal]").forEach(function (b) {
-      b.addEventListener("click", function () { modal.hidden = true; document.body.style.overflow = ""; });
+      b.addEventListener("click", closeModal);
     });
-    modal.addEventListener("click", function (e) { if (e.target === modal) { modal.hidden = true; document.body.style.overflow = ""; } });
-    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) { modal.hidden = true; document.body.style.overflow = ""; } });
+    modal.addEventListener("click", function (e) { if (e.target === modal) closeModal(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) closeModal(); });
+  }
+
+  /* Diagnosis call form (mailto, no backend) */
+  var callForm = $("#callForm");
+  if (callForm) {
+    callForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      function f(id) { var el = document.getElementById(id); return el ? el.value.trim() : ""; }
+      var name = f("cName"), email = f("cEmail"), phone = f("cPhone"), want = f("cWant"), msg = f("cMsg");
+      var body = "Name: " + name + "\nEmail: " + email + "\nPhone: " + phone + "\nWants most: " + want + "\n\n" + msg;
+      window.location.href = "mailto:team@goanomalous.com?subject=" + encodeURIComponent("Diagnosis call request: " + name) + "&body=" + encodeURIComponent(body);
+    });
   }
 
   /* Quiz wizard (5 scripts page) */
@@ -162,6 +194,28 @@
       window.scrollTo({ top: out.offsetTop - 90, behavior: "smooth" });
     }
     show(0, false);
+  }
+
+  /* Lightbox (phase diagrams, team cards, GaryVee photo) */
+  var lb = $("#lightbox"), lbImg = $("#lbImg");
+  function openLb(src, alt) {
+    if (!lb || !lbImg) return;
+    lbImg.src = src; lbImg.alt = alt || "";
+    lb.hidden = false; document.body.style.overflow = "hidden";
+  }
+  function closeLb() {
+    if (!lb) return;
+    lb.hidden = true; lbImg.src = ""; document.body.style.overflow = "";
+  }
+  $$("[data-lb]").forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      e.stopPropagation();
+      openLb(el.getAttribute("data-lb"), el.getAttribute("alt"));
+    });
+  });
+  if (lb) {
+    lb.addEventListener("click", function (e) { if (e.target === lb || e.target.id === "lbClose") closeLb(); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !lb.hidden) closeLb(); });
   }
 
   /* Conversion estimator */
