@@ -86,12 +86,12 @@
     }
     function playReel(src) {
       if (!mVideo || !src) return;
-      if (window.Hls && Hls.isSupported()) {
+      if (/\.m3u8($|\?)/.test(src) && window.Hls && Hls.isSupported()) {
         hls = new Hls();
         hls.loadSource(src);
         hls.attachMedia(mVideo);
       } else {
-        /* Safari plays HLS natively; anything else gets the same URL. */
+        /* MP4 files play directly; Safari also plays HLS natively. */
         mVideo.src = src;
       }
     }
