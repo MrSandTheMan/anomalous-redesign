@@ -51,7 +51,11 @@
   }
 
   /* Scrollspy */
-  var links = $$(".nav a"), sections = links.map(function (a) { return $(a.getAttribute("href")); });
+  var links = $$(".nav a"), sections = links.map(function (a) {
+    var h = a.getAttribute("href") || "";
+    if (h.charAt(0) !== "#") return null; /* page links are not in-page sections */
+    try { return document.querySelector(h); } catch (e) { return null; }
+  });
   function spy() {
     var y = window.scrollY + 140, current = -1;
     sections.forEach(function (s, i) { if (s && s.offsetTop <= y) current = i; });
@@ -151,6 +155,10 @@
       b.addEventListener("click", function () { if (cur > 0) show(cur - 1); });
     });
     function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ""; }
+    var q6 = document.getElementById("q6"), qStart = document.getElementById("qStart");
+    if (q6 && qStart) q6.addEventListener("change", function () {
+      qStart.textContent = q6.value.trim() || "this week";
+    });
     function finish() {
       if (bar) bar.style.width = "100%";
       var dream = val("q1") || "your dream customer";
@@ -226,6 +234,9 @@
       rQual.textContent = Math.round(qualified).toLocaleString("en-US");
       rDeals.textContent = deals.toFixed(1);
       rMoney.textContent = money(cash);
+      var oV2 = document.getElementById("oViews2"), rM2 = document.getElementById("rMoney2");
+      if (oV2) oV2.textContent = v.toLocaleString("en-US");
+      if (rM2) rM2.textContent = rMoney.textContent;
       var niche = (document.getElementById("eNiche") || {}).value || "your niche";
       rNote.textContent = "Estimate for " + niche + ", per month, at your numbers. Change any slider and the funnel updates.";
     }
@@ -233,5 +244,10 @@
     var nicheEl = document.getElementById("eNiche");
     if (nicheEl) nicheEl.addEventListener("input", calc);
     calc();
+    var sendBtn = document.getElementById("sendEstimates");
+    if (sendBtn) sendBtn.addEventListener("click", function () {
+      var n = document.getElementById("sendNote");
+      if (n) n.hidden = false;
+    });
   }
 })();
