@@ -59,17 +59,6 @@
   }
   window.addEventListener("scroll", spy, { passive: true }); spy();
 
-  /* Phase stepper (home) */
-  $$(".phase").forEach(function (ph) {
-    ph.addEventListener("click", function () {
-      $$(".phase").forEach(function (o) {
-        if (o !== ph) { o.classList.remove("open"); var t = $(".tap", o); if (t) t.textContent = "Tap to expand"; }
-      });
-      var nowOpen = ph.classList.toggle("open");
-      var tap = $(".tap", ph); if (tap) tap.textContent = nowOpen ? "Tap to collapse" : "Tap to expand";
-    });
-  });
-
   /* Portfolio filter */
   $$(".filters button").forEach(function (btn) {
     btn.addEventListener("click", function () {
