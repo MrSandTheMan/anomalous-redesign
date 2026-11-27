@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Go Dashboard, ANOMALOUS</title>
+<meta name="description" content="Every live client Go page, in one place. Internal index for Anomalous.">
+<meta name="theme-color" content="#0c0c0c">
+<link rel="icon" href="https://images.squarespace-cdn.com/content/v1/5fe3904804e8564c7d72245d/fa9d185d-3a30-4af8-afb0-0909c0a40d38/favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Archivo:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<style>
+.go-list{max-width:720px;margin:0 auto}
+.go-card{display:flex;align-items:center;gap:16px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:14px;padding:16px 20px;margin:0 0 12px;color:#fff;text-decoration:none}
+.go-card:hover{background:#232327;border-color:#FFD60A}
+.go-card .av{position:relative;width:56px;height:56px;flex-shrink:0}
+.go-card .av img{width:56px;height:56px;border-radius:50%;object-fit:cover;display:block;border:2px solid #2a2a2a}
+.go-card .av .init{display:none;width:56px;height:56px;border-radius:50%;background:#2a2a2a;color:#FFD60A;font-family:Archivo,Inter,sans-serif;font-size:18px;font-weight:700;align-items:center;justify-content:center}
+.go-card .meta{flex:1;min-width:0}
+.go-card .name{font-family:Archivo,Inter,sans-serif;font-size:19px;font-weight:700;color:#fff;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.go-card .url{color:#FFD60A;font-size:13px;margin-top:3px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.go-card .arrow{color:#FFD60A;font-size:22px;flex-shrink:0}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="../index.html" aria-label="Anomalous home"><img src="https://images.squarespace-cdn.com/content/v1/5fe3904804e8564c7d72245d/867c1caf-8105-4897-837f-d7fde5fe9fe9/Logo+WHITE.png?format=500w" alt="ANOMALOUS"></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+    <nav class="nav" id="nav">
+      <a href="../index.html">Home</a>
+      <a href="../portfolio.html">Portfolio</a>
+      <a href="../scripts.html">Get 5 Scripts</a>
+      <a href="../conversion.html">Conversion Map</a>
+    </nav>
+    <a class="btn small" href="../getstarted.html">Book a diagnosis call</a>
+  </div>
+</header>
+
+<div class="wrap hero">
+  <div class="reveal">
+    <p class="eyebrow">Anomalous &middot; Internal</p>
+    <h1>Go Dashboard.</h1>
+    <p class="lede"><b>9 live pages.</b> Every client Go page, in one place. Tap a client to open their page.</p>
+  </div>
+</div>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="go-list reveal">
+      <a class="go-card" href="https://www.goanomalous.com/gobeatrice">
+        <span class="av"><img src="https://images.squarespace-cdn.com/content/v1/5fe3904804e8564c7d72245d/129d9b37-c51c-44e7-846c-22b4d08cd63c/beatrice-photo.png" alt="Beatrice Caponnetti Jackson" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="init">BC</span></span>
+        <span class="meta"><span class="name">Beatrice Caponnetti Jackson</span><span class="url">https://www.goanomalous.com/gobeatrice</span></span>
+        <span class="arrow">&rarr;</span></a>
+      <a class="go-card" href="https://www.goanomalous.com/gocorestone">
+        <span class="av"><img src="https://raw.githubusercontent.com/MrSandTheMan/go-assets/main/corestone-profile.png" alt="Corestone" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="init">CO</span></span>
+        <span class="meta"><span class="name">Corestone</span><span class="url">https://www.goanomalous.com/gocorestone</span></span>
+        <span class="arrow">&rarr;</span></a>
+      <a class="go-card" href="https://www.goanomalous.com/gocourtney">
+        <span class="av"><img src="https://raw.githubusercontent.com/MrSandTheMan/go-assets/main/courtney-profile.jpg" alt="Courtney Mendez" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="init">CM</span></span>
+        <span class="meta"><span class="name">Courtney Mendez</span><span class="url">https://www.goanomalous.com/gocourtney</span></span>
+        <span class="arrow">&rarr;</span></a>
+      <a class="go-card" href="https://www.goanomalous.com/gojohn">
+        <span class="av"><img src="https://raw.githubusercontent.com/MrSandTheMan/go-assets/main/gojohn/john-ig-profile.jpg" alt="John Henry" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="init">JH</span></span>
+        <span class="meta"><span class="name">John Henry</span><span class="url">https://www.goanomalous.com/gojohn</span></span>
+        <span class="arrow">&rarr;</span></a>
+      <a class="go-card" href="https://www.goanomalous.com/gojudy">
+        <span class="av"><img src="https://raw.githubusercontent.com/MrSandTheMan/go-assets/main/judy-profile.jpg" alt="Judy Zhou" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="init">JZ</span></span>
+        <span class="meta"><span class="name">Judy Zhou</span><span class="url">https://www.goanomalous.com/gojudy</span></span>
+        <span class="arrow">&rarr;</span></a>
+      <a class="go-card" href="https://www.goanomalous.com/gorahat">
+        <span class="av"><img src="https://raw.githubusercontent.com/MrSandTheMan/go-assets/main/rahat-profile-2.jpg" alt="Rahat Kamal" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="init">RK</span></span>
+        <span class="meta"><span class="name">Rahat Kamal</span><span class="url">https://www.goanomalous.com/gorahat</span></span>
+        <span class="arrow">&rarr;</span></a>
+      <a class="go-card" href="https://www.goanomalous.com/gorahme">
+        <span class="av"><img src="https://raw.githubusercontent.com/MrSandTheMan/go-assets/main/rahme-profile.jpg" alt="Rahme Team" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="init">RT</span></span>
+        <span class="meta"><span class="name">Rahme Team</span><span class="url">https://www.goanomalous.com/gorahme</span></span>
+        <span class="arrow">&rarr;</span></a>
+      <a class="go-card" href="https://www.goanomalous.com/gosocrates">
+        <span class="av"><img src="https://raw.githubusercontent.com/MrSandTheMan/go-assets/main/gosocrates/profile-pic.jpg" alt="Socrates Gomez" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="init">SG</span></span>
+        <span class="meta"><span class="name">Socrates Gomez</span><span class="url">https://www.goanomalous.com/gosocrates</span></span>
+        <span class="arrow">&rarr;</span></a>
+      <a class="go-card" href="https://www.goanomalous.com/gokramer">
+        <span class="av"><img src="https://raw.githubusercontent.com/MrSandTheMan/go-assets/main/kramer-profile.png" alt="Steven Kramer Team" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"><span class="init">SK</span></span>
+        <span class="meta"><span class="name">Steven Kramer Team</span><span class="url">https://www.goanomalous.com/gokramer</span></span>
+        <span class="arrow">&rarr;</span></a>
+      <p style="color:#666;font-size:13px;margin-top:32px">Internal index. Not linked in the site navigation.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h4>Anomalous, LLC</h4>
+        <p style="color:var(--muted);font-size:14px;max-width:40ch">Marketing for real estate businesses. New York City, Upstate New York, New Jersey. Founded January 2021.</p>
+      </div>
+      <div>
+        <h4>Pages</h4>
+        <a href="../index.html">Home</a>
+        <a href="../portfolio.html">Portfolio</a>
+        <a href="../scripts.html">Get 5 Scripts</a>
+        <a href="../conversion.html">Conversion Map</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <a href="../getstarted.html">Book a diagnosis call</a>
+        <a href="mailto:team@goanomalous.com">team@goanomalous.com</a>
+      </div>
+    </div>
+    <p class="foot-fine">&copy; 2026 Anomalous, LLC.</p>
+  </div>
+</footer>
+<script src="../assets/app.js"></script>
+</body>
+</html>
