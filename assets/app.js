@@ -1,6 +1,13 @@
 /* ANOMALOUS redesign - shared interactions. No dependencies. */
 (function () {
   "use strict";
+  var FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbzqxH0u2D4HabAzGGGaOj8gyRElbUPfr8ftrwkDzuIh-tNZ-64TCfHUkneNv4jwA8k8zg/exec";
+  var FORM_TOKEN = "5b6c23719188da0d5dacbc295763ddae77166a87c022df41";
+  function postForm(data) {
+    if (!FORM_ENDPOINT || FORM_ENDPOINT.indexOf("__ANOMALOUS") === 0) return;
+    data.token = FORM_TOKEN;
+    fetch(FORM_ENDPOINT, { method: "POST", headers: { "Content-Type": "text/plain" }, body: JSON.stringify(data) }).catch(function () {});
+  }
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
@@ -181,7 +188,11 @@
           "<span class=\"chip\">Script " + (i + 1) + "</span><h4>" + s.t + "</h4>" +
           "<p class=\"hook\">" + s.h + "</p><p>" + s.b + "</p></div>";
       });
-      html += "<p class=\"fine\">Full scripts with word-for-word lines go to " + (val("qEmail") || "your email") + ". This preview builds your outlines instantly; the live page sends the complete versions.</p>";
+      html += "<p class=\"fine\">Full scripts with word-for-word lines go to " + (val("qEmail") || "your email") + ". Your outlines are below, and the complete versions are on their way.</p>";
+      var outlinesText = scripts.map(function (s) { return s.t + "\n" + s.h + "\n" + s.b; }).join("\n\n");
+      postForm({ type: "scripts", name: val("qName"), email: val("qEmail"), phone: val("qPhone"),
+        answers: { dreamCustomer: dream, action: action, vibe: vibe, flexStory: flex, setup: setup },
+        outlines: outlinesText });
       out.innerHTML = html;
       steps.forEach(function (s) { s.classList.remove("on"); });
       $("#qDone").classList.add("on");
@@ -247,7 +258,19 @@
     var sendBtn = document.getElementById("sendEstimates");
     if (sendBtn) sendBtn.addEventListener("click", function () {
       var n = document.getElementById("sendNote");
-      if (n) n.hidden = false;
+      var name = (document.getElementById("cName") || {}).value || "";
+      var email = (document.getElementById("cEmail") || {}).value || "";
+      var phone = (document.getElementById("cPhone") || {}).value || "";
+      if (!email || email.indexOf("@") < 0) {
+        if (n) { n.textContent = "Add a valid email so we can send your breakdown."; n.hidden = false; }
+        return;
+      }
+      postForm({ type: "conversion", name: name, email: email, phone: phone,
+        estimates: { views: num(views, 10000), clickRate: num(ctr, 2), landingConversion: num(lcv, 20),
+          qualifiedRate: num(qual, 50), closeRate: num(close, 3), revenuePerDeal: num(rev, 15000),
+          monthlyRevenue: (document.getElementById("rMoney") || {}).textContent || "" },
+        answers: { niche: (document.getElementById("eNiche") || {}).value || "" } });
+      if (n) { n.textContent = "Sent. Your breakdown is on its way to " + email + "."; n.hidden = false; }
     });
   }
 })();
