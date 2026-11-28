@@ -121,15 +121,86 @@
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) closeModal(); });
   }
 
-  /* Diagnosis call form (mailto, no backend) */
-  var callForm = $("#callForm");
-  if (callForm) {
-    callForm.addEventListener("submit", function (e) {
+  /* Booking picker (getstarted) — date + time slots, posts type=booking.
+     Call hours set by Sandy Nov 27, 2026: Discovery calls, 30 minutes,
+     Mon-Fri, noon to 4pm ET. days: 0=Sunday..6=Saturday. */
+  var BOOK_HOURS = { days: [1, 2, 3, 4, 5], start: 12 * 60, end: 16 * 60, slotMinutes: 30 };
+  var bookForm = $("#bookForm");
+  if (bookForm) {
+    var datesEl = $("#bookDates"), slotsEl = $("#bookSlots"), noteEl = $("#bookNote");
+    var selDate = null, selTime = null;
+    var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    function fmtTime(mins) {
+      var h = Math.floor(mins / 60), m = mins % 60, ap = h >= 12 ? "PM" : "AM", hh = h % 12;
+      if (hh === 0) hh = 12;
+      return hh + ":" + (m < 10 ? "0" : "") + m + " " + ap;
+    }
+    function fmtDate(d) {
+      return DAYS[d.getDay()] + ", " + MONTHS[d.getMonth()] + " " + d.getDate() + ", " + d.getFullYear();
+    }
+    function buildDates() {
+      datesEl.innerHTML = "";
+      var today = new Date(); today.setHours(0, 0, 0, 0);
+      for (var i = 0; i < 14; i++) {
+        var d = new Date(today.getTime() + i * 86400000);
+        if (BOOK_HOURS.days.indexOf(d.getDay()) < 0) continue;
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "date-chip";
+        b.innerHTML = "<b>" + DAYS[d.getDay()] + "</b><span>" + MONTHS[d.getMonth()] + " " + d.getDate() + "</span>";
+        (function (dd, btn) {
+          btn.addEventListener("click", function () {
+            selDate = dd; selTime = null;
+            $$(".date-chip", datesEl).forEach(function (c) { c.classList.remove("on"); });
+            btn.classList.add("on");
+            buildSlots();
+          });
+        })(d, b);
+        datesEl.appendChild(b);
+      }
+      var first = datesEl.querySelector(".date-chip");
+      if (first) first.click();
+    }
+    function buildSlots() {
+      slotsEl.innerHTML = "";
+      if (!selDate) return;
+      var now = new Date();
+      var isToday = selDate.toDateString() === now.toDateString();
+      for (var t = BOOK_HOURS.start; t + BOOK_HOURS.slotMinutes <= BOOK_HOURS.end; t += BOOK_HOURS.slotMinutes) {
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "slot"; b.textContent = fmtTime(t);
+        var slotDate = new Date(selDate.getFullYear(), selDate.getMonth(), selDate.getDate(), Math.floor(t / 60), t % 60);
+        if (isToday && slotDate.getTime() <= now.getTime() + 30 * 60000) b.disabled = true;
+        (function (tt, btn) {
+          btn.addEventListener("click", function () {
+            selTime = tt;
+            $$(".slot", slotsEl).forEach(function (s) { s.classList.remove("on"); });
+            btn.classList.add("on");
+          });
+        })(t, b);
+        slotsEl.appendChild(b);
+      }
+    }
+    buildDates();
+    bookForm.addEventListener("submit", function (e) {
       e.preventDefault();
       function f(id) { var el = document.getElementById(id); return el ? el.value.trim() : ""; }
-      var name = f("cName"), email = f("cEmail"), phone = f("cPhone"), want = f("cWant"), msg = f("cMsg");
-      var body = "Name: " + name + "\nEmail: " + email + "\nPhone: " + phone + "\nWants most: " + want + "\n\n" + msg;
-      window.location.href = "mailto:team@goanomalous.com?subject=" + encodeURIComponent("Diagnosis call request: " + name) + "&body=" + encodeURIComponent(body);
+      var name = f("bName"), email = f("bEmail"), phone = f("bPhone"), want = f("bWant"), msg = f("bMsg");
+      if (!selDate || selTime === null) {
+        if (noteEl) { noteEl.textContent = "Pick a day and a time first."; noteEl.hidden = false; }
+        return;
+      }
+      if (!name || !email || email.indexOf("@") < 0) {
+        if (noteEl) { noteEl.textContent = "Add your name and a valid email so we can confirm."; noteEl.hidden = false; }
+        return;
+      }
+      postForm({ type: "booking", date: fmtDate(selDate), time: fmtTime(selTime) + " ET",
+        name: name, email: email, phone: phone, want: want, message: msg });
+      bookForm.hidden = true;
+      var done = $("#bookDone"), doneText = $("#bookDoneText");
+      if (doneText) doneText.textContent = name.split(" ")[0] + ", you asked for " + fmtDate(selDate) + " at " + fmtTime(selTime) + " Eastern.";
+      if (done) done.hidden = false;
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
   }
 
