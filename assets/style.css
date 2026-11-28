@@ -181,3 +181,29 @@ footer a:hover{color:var(--red-soft)}
   section{padding:54px 0}
   footer .cols{grid-template-columns:1fr}
 }
+/* sticky bottom action bar (phone only, Gold Medal pattern) */
+.stickybar{display:none}
+@media (max-width:600px){
+  body{padding-bottom:76px}
+  .stickybar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:50;background:#141414;border-top:1px solid var(--line);height:64px;align-items:stretch}
+  .stickybar a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#fff;text-decoration:none;font-size:12px;font-weight:600}
+  .stickybar a svg{width:22px;height:22px}
+  .stickybar .sb-center{flex:0 0 96px;position:relative}
+  .stickybar .sb-center .sb-ring{width:60px;height:60px;border-radius:50%;background:var(--red);border:3px solid #141414;display:flex;align-items:center;justify-content:center;margin-top:-32px;box-shadow:0 4px 16px rgba(0,0,0,.5)}
+  .stickybar .sb-center .sb-ring svg{width:26px;height:26px;color:#fff}
+  .stickybar .sb-center span{font-size:12px;font-weight:700;margin-top:2px}
+}
+/* booking picker (getstarted) */
+.dates{display:flex;gap:8px;overflow-x:auto;padding-bottom:10px;-webkit-overflow-scrolling:touch}
+.date-chip{flex:0 0 auto;min-width:66px;padding:10px 8px;border:1px solid #3e3e3e;border-radius:12px;background:#0c0c0c;color:#fff;cursor:pointer;text-align:center;font-family:var(--sans)}
+.date-chip b{display:block;font-size:15px}
+.date-chip span{font-size:12px;color:var(--muted)}
+.date-chip.on{border-color:var(--red);background:rgba(255,0,4,.14)}
+.date-chip.on span{color:var(--red-soft)}
+.slots{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.slot{padding:12px 6px;border:1px solid #3e3e3e;border-radius:12px;background:#0c0c0c;color:#fff;cursor:pointer;font:600 14px var(--sans)}
+.slot.on{border-color:var(--red);background:rgba(255,0,4,.14);color:#fff}
+.slot:disabled{opacity:.3;cursor:not-allowed}
+.book-step{margin-top:24px}
+.book-step h3{font-size:20px;margin-bottom:6px}
+.book-note{font-size:13px;color:var(--muted);margin-top:10px}
