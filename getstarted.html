@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Book a diagnosis call, ANOMALOUS</title>
-<meta name="description" content="Book a 45-minute diagnosis call with Anomalous. We collect the facts about your market, your customers, and your goals, and you leave knowing exactly what we would build and why.">
+<title>Book a discovery call, ANOMALOUS</title>
+<meta name="description" content="Book a 30-minute discovery call with Anomalous. Pick a day and time, and we will confirm by email. We collect the facts about your market, your customers, and your goals, and you leave knowing exactly what we would build and why.">
 <meta name="theme-color" content="#0c0c0c">
 <link rel="icon" href="https://images.squarespace-cdn.com/content/v1/5fe3904804e8564c7d72245d/fa9d185d-3a30-4af8-afb0-0909c0a40d38/favicon.ico">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,37 +23,55 @@
       <a href="scripts.html">Get 5 Scripts</a>
       <a href="conversion.html">Conversion Map</a>
     </nav>
-    <a class="btn small" href="getstarted.html">Book a diagnosis call</a>
+    <a class="btn small" href="getstarted.html">Book a discovery call</a>
   </div>
 </header>
 
 <div class="wrap hero">
   <div class="reveal">
-    <p class="eyebrow">Diagnosis call</p>
-    <h1>Book your <em>diagnosis call.</em></h1>
-    <p class="lede">45 minutes. We collect the facts about your market, your customers, and your goals, and you leave knowing exactly what we would build and why. No pitch, no package talk.</p>
+    <p class="eyebrow">Discovery call</p>
+    <h1>Book your <em>discovery call.</em></h1>
+    <p class="lede">30 minutes. Pick a day and time below, and we will confirm by email. We collect the facts about your market, your customers, and your goals, and you leave knowing exactly what we would build and why. No pitch, no package talk. All times Eastern.</p>
   </div>
 </div>
 
 <section style="padding-top:0">
   <div class="wrap">
     <div class="panel reveal" style="max-width:640px">
-      <form id="callForm">
-        <div class="field"><label for="cName">Your name</label><input type="text" id="cName" required></div>
-        <div class="field"><label for="cEmail">Email</label><input type="email" id="cEmail" required></div>
-        <div class="field"><label for="cPhone">Phone</label><input type="tel" id="cPhone"></div>
-        <div class="field"><label for="cWant">What do you want most?</label>
-          <select id="cWant">
-            <option>More listings</option>
-            <option>More leads</option>
-            <option>A brand people remember</option>
-            <option>Something else</option>
-          </select>
+      <form id="bookForm">
+        <div class="book-step" style="margin-top:0">
+          <h3>1. Pick a day</h3>
+          <div class="dates" id="bookDates" role="group" aria-label="Pick a day"></div>
         </div>
-        <div class="field"><label for="cMsg">Anything we should know? (optional)</label><textarea id="cMsg"></textarea></div>
-        <button class="btn" type="submit">Send the request</button>
-        <p class="fine">This opens your email app with the request addressed to team@goanomalous.com. Prefer to write directly? Email <a href="mailto:team@goanomalous.com" style="color:var(--red-soft)">team@goanomalous.com</a>.</p>
+        <div class="book-step">
+          <h3>2. Pick a time</h3>
+          <p class="fine" style="margin-bottom:4px">30 minutes. All times Eastern.</p>
+          <div class="slots" id="bookSlots" role="group" aria-label="Pick a time"></div>
+        </div>
+        <div class="book-step">
+          <h3>3. Your details</h3>
+          <div class="field"><label for="bName">Your name</label><input type="text" id="bName" required></div>
+          <div class="field"><label for="bEmail">Email</label><input type="email" id="bEmail" required></div>
+          <div class="field"><label for="bPhone">Phone</label><input type="tel" id="bPhone"></div>
+          <div class="field"><label for="bWant">What do you want most?</label>
+            <select id="bWant">
+              <option>More listings</option>
+              <option>More leads</option>
+              <option>A brand people remember</option>
+              <option>Something else</option>
+            </select>
+          </div>
+          <div class="field"><label for="bMsg">Anything we should know? (optional)</label><textarea id="bMsg"></textarea></div>
+          <button class="btn" type="submit">Book my call</button>
+          <p class="book-note" id="bookNote" hidden></p>
+          <p class="fine">Prefer to write directly? Email <a href="mailto:team@goanomalous.com" style="color:var(--red-soft)">team@goanomalous.com</a>.</p>
+        </div>
       </form>
+      <div id="bookDone" hidden>
+        <h3>Request sent.</h3>
+        <p class="lede" id="bookDoneText"></p>
+        <p class="fine">We will confirm by email shortly. If you need to change the time, reply to that email or write to <a href="mailto:team@goanomalous.com" style="color:var(--red-soft)">team@goanomalous.com</a>.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -74,13 +92,18 @@
       </div>
       <div>
         <h4>Contact</h4>
-        <a href="getstarted.html">Book a diagnosis call</a>
+        <a href="getstarted.html">Book a discovery call</a>
         <a href="mailto:team@goanomalous.com">team@goanomalous.com</a>
       </div>
     </div>
     <p class="foot-fine">&copy; 2026 Anomalous, LLC.</p>
   </div>
 </footer>
+<nav class="stickybar" aria-label="Quick actions">
+  <a href="scripts.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/><circle cx="12" cy="12" r="3.2"/></svg>Free Scripts</a>
+  <a href="getstarted.html" class="sb-center"><span class="sb-ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span><span>Book a Call</span></a>
+  <a href="portfolio.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>Our Work</a>
+</nav>
 <script src="assets/app.js"></script>
 </body>
 </html>
